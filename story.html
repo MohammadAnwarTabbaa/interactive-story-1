@@ -13,13 +13,27 @@
 
         return false;
       }
+      function play(id) {
+        document.getElementById(id).play();
+      }
+      function playafter(time, id) {
+        setTimeout(function () {
+          play(id);
+        }, time);
+      }
+      function showafter(time, id, shown, hidden) {
+        setTimeout(function () {
+          play(id);
+          show(shown, hidden);
+        }, time);
+      }
     </script>
   </head>
   <body>
     <audio controls autoplay loop>
       <source src="horrorSong.mp3" type="audio/mpeg" />
     </audio>
-    <div id="Page1">
+    <div id="start">
       <h1>
         The Townsville Killer<br />
         <span>Based on a true story</span>
@@ -29,22 +43,204 @@
       <button
         class="btn"
         id="start-btn"
-        onclick="return show('Page2','Page1') "
+        onclick="return show('introduction','start') ;"
       >
         PLAY
       </button>
     </div>
-    <div id="Page2" style="display: none">
-      Content of page 2
-      <a href="#" onclick="return show('Page1','Page2');">Show page 1</a>
-      <a href="#" onclick="return show('Page3','Page2');">Show page 3</a>
+
+    <div id="introduction" style="display: none">
+      <div class="main">
+      ARE YOU READY! <br />You will have to choose your character's path to
+      progress with the story and successfully escape the hands of an infamous
+      serial killer the "Townsville Killer" who was responsible for the murder
+      of 13 people in your town on Halloween of 1987. But beware! One wrong
+      choice could potentially lead you straight to your death...
     </div>
+      <a href="#" onclick="return show('Page1','introduction');">Next</a>
+    
+    </div>
+
+    <div id="Page1" style="display: none">
+      <div class="main">
+      It's finally the of 31st of October. You've gotten your Halloween outfit
+      and are ready to go out to a friend's house party. When you came back
+      home, you found your mom and dad dead and on the the wall above their
+      heads the numbers 11 and 12 written in their blood.
+    </div>
+      <a href="#" onclick="return show('Page4','Page1'),play('stair')"
+        >Go downstairs</a
+      >
+      <a href="#" onclick="return show('Page2','Page1');">remain upstairs</a>
+    </div>
+
+    <div id="Page2" style="display: none">
+      <div class="main">
+      Terrified the Townsville killer has returned after all these years, you
+      remain up stairs looking for a weapon but all you find is your dad's old
+      razor.
+    </div>
+      <a
+        href="#"
+        onclick="return show('Page3','Page2'),play('walking'),playafter(6000,'breathing')"
+        >go to your bedroom</a
+      >
+      <a href="#" onclick="return show('Page4','Page2'),play('stair')"
+        >go downstairs</a
+      >
+    </div>
+
     <div id="Page3" style="display: none">
-      Content of page 3
-      <a href="#" onclick="return show('Page1','Page3');">Show page 1</a>
-      <a href="#" onclick="return show('Page2','Page3');">Show page 2</a>
+      <div class="main">
+      You rush to get the tennis racket you remember you have kept in your
+      closet. However, your room is farthest from the staircase and this results
+      in you not being able to hear the intruder's footsteps climbing up which
+      leads to your death.
+    </div>
+      <a href="#" onclick="return show('Page2','Page3');">Back One Step</a>
+    </div>
+    <div id="Page4" style="display: none">
+      <div class="main">
+      you see the front door thinking the Townsville killer is in your house to
+      claim you as his 13th victim.
+    </div>
+      <a href="#" onclick="return show('Page6','Page4');"
+        >keep the door closed</a
+      >
+      <a
+        href="#"
+        onclick="return showafter(5000,'screaming','Page5','Page4'),play('door')"
+        >Open the door</a
+      >
+    </div>
+
+    <div id="Page5" style="display: none">
+      <div class="main">
+      you got killed by the Townsville killer.
+    </div>
+      <a href="#" onclick="return show('Page4','Page5');">Back One Step</a>
+    </div>
+
+    <div id="Page6" style="display: none">
+      <div class="main">
+      you get to your home phone in the living room. Just as you begin dialing
+      the police, you discover the line has been cut.
+    </div>
+      <a href="#" onclick="return show('Page9','Page6'),play('walking')"
+        >Go to the kitchen</a
+      >
+      <a href="#" onclick="return show('Page7','Page6'),play('searching')"
+        >Search for your mobile phone</a
+      >
+    </div>
+
+    <div id="Page7" style="display: none">
+      <div class="main">
+      You stay in the living room searching for your phone only to know it
+      currently has a dead battery.
+    </div>
+      <a href="#" onclick="return show('Page8','Page7'),play('searching')">Search for a charger</a>
+      <a href="#" onclick="return show('Page9','Page7'),play('walking')">Go to the kitchen</a>
+    </div>
+
+    <div id="Page8" style="display: none">
+      <div class="main">
+      You search for a charger when suddenly the power is cut off and someone
+      enters and kills you
+    </div>
+      <a href="#" onclick="return show('Page7','Page8');">Back One Step</a>
+      
+    </div>
+
+    <div id="Page9" style="display: none">
+      <div class="main">
+      You go to the kitchen and pick the sharpest knife you see, and suddenly
+      the power is cut off.
+    </div>
+      <a href="#" onclick="return showafter(5000,'mario','Page10','Page9'),play('walking')">Go back to the living room</a>
+      <a href="#" onclick="return showafter(5000,'car','Page11','Page9'),play('stair')">Go to the basement</a>
+    </div>
+
+    <div id="Page10" style="display: none">
+      <div class="main">
+      You got back to the living room and get killed
+    </div> 
+      <a href="#" onclick="return show('Page9','Page10');">Back One Step</a>
+        </div>
+    <div id="Page11" style="display: none">
+      <div class="main">
+      You go to the basement and escape then you see a car passing by.
+    </div>
+      <a href="#" onclick="return showafter(2000,'woo','Page13','Page11'),play('wood')">Seek your way in the woods</a>
+      <a href="#" onclick="return showafter(3000,'screaming','Page12','Page11'),play('car-acc')">Stop the car</a>
+    </div>
+    <div id="Page12" style="display: none">
+      <div class="main">
+      You stop the car and you got killed. It's the Townsville Killer driving.
+    </div>
+      <a href="#" onclick="return show('Page11','Page12');">Back One Step</a>
+    </div>
+    <div id="Page13" style="display: none">
+      <div class="main">
+      You hide and seek your way in the woods.
+    </div>
+      <a href="#" onclick="return show('Page14','Page13'),play('bad-finish')">Go to the light</a>
+      <a href="#" onclick="return show('Page15','Page13'),play('celebrating')">Run away from it</a>
+    </div>
+    <div id="Page14" style="display: none">
+      <div class="main">
+      it's just a dream :p
+    </div>
+      <a href="#" onclick="return show('Page13','Page14');">Back One Step</a>
+      
+    </div>
+    <div id="Page15" style="display: none">
+      <div class="main">
+      You run away, find another car and reach the police station. You survived, Congrats!!
+    </div>
+      <a href="#" onclick="return show('Page13','Page15');">Back One Step</a>
     </div>
   </body>
+  <div>
+  <audio id="breathing" controls style="display: none">
+    <source src="breathing (mp3cut.net).mp3" type="audio/mpeg" />
+    <audio id="walking" controls style="display: none">
+      <source src="walking (mp3cut.net).mp3" type="audio/mpeg" />
+    </audio>
+    <audio id="stair" controls style="display: none">
+      <source src="stair.mp3" type="audio/mpeg" />
+    </audio>
+    <audio id="door" controls style="display: none">
+      <source src="bbc_door-creak_07037552 (mp3cut.net).mp3" type="audio/mpeg" />
+    </audio>
+    <audio id="screaming" controls style="display: none">
+      <source src="screaming.mp3" type="audio/mpeg" />
+    </audio>
+    <audio id="searching" controls style="display: none">
+      <source src="searching.mp3" type="audio/mpeg" />
+    </audio>
+    <audio id="mario" controls style="display: none">
+      <source src="super-mario-death-sound-sound-effect (mp3cut.net).mp3" type="audio/mpeg" />
+    </audio>
+    <audio id="car" controls style="display: none">
+      <source src="VEHCar_Car starting and departure (ID 0189)_BSB (mp3cut.net).mp3" type="audio/mpeg" />
+    </audio>
+    <audio id="wood" controls style="display: none">
+      <source src="wood (mp3cut.net).mp3" type="audio/mpeg" />
+    </audio>
+    <audio id="car-acc" controls style="display: none">
+      <source src="car-acc (mp3cut.net).mp3" type="audio/mpeg" />
+    </audio>
+    <audio id="bad-finish" controls style="display: none">
+      <source src="bad-f.mp3" type="audio/mpeg" />
+    </audio>
+    <audio id="celebrating" controls style="display: none">
+      <source src="celebrating (mp3cut.net).mp3" type="audio/mpeg" />
+    </audio>
+    <audio id="woo" controls muted style="display: none">
+      <source src="celebrating (mp3cut.net).mp3" type="audio/mpeg" />
+    </audio>
+  </div>
 </html>
 <!-- <head>
       <title>Document</title>

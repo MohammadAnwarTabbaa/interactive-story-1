@@ -175,3 +175,17 @@ span {
   background: rgb(150, 14, 5);
   color: black;
 }
+a {
+  text-decoration: none;
+  color: white;
+  border: solid 2px red;
+  background-color: red;
+  font-size: 40px;
+}
+* {
+  color: white;
+}
+
+.main {
+  font-size: 50px;
+}
